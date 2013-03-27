@@ -1,0 +1,97 @@
+<head>
+  <title>youtubedj</title>
+  <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+  <script type="text/javascript">
+    google.load("swfobject", "2.1");
+  </script> 
+  <script type="text/javascript">
+      // function _run() {
+      //   /*
+      //   * Simple user embed
+      //   */
+        
+      //   // The video to load.
+      //   var videoID = "ylLzyHk54Z0"
+      //   // Lets Flash from another domain call JavaScript
+      //   var params = { allowScriptAccess: "always" };
+      //   // The element id of the Flash embed
+      //   var atts = { id: "ytPlayer" };
+      //   // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
+      //   swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?version=3&enablejsapi=1&userapiid=user1", 
+      //                      "videoDiv", "480", "295", "9", null, null, params, atts);
+        
+        
+      // }
+      // google.setOnLoadCallback(_run);
+    </script>   
+</head>
+
+<body>
+  <div id="video">
+    {{> current }}
+  </div>
+  <div id="info">
+    {{> hello }}
+    {{> lobby }}
+    {{> songs }}
+  </div>
+</body>
+
+<template name="current">
+  {{update_song}}
+  <div id="videoDiv">Loading...</div>
+  
+</template>
+
+<template name="hello">
+  <h1>Hello World!</h1>
+  {{greeting}}
+  <input type="button" value="Click" />
+</template>
+
+<template name="lobby">
+  <div>
+    {{#if show }}
+    <div id="lobby">
+      <h1>What's your name?</h1>
+      <input id="myname" type="text" />
+      {{#if count}}
+      <h1>{{count}} other users are in the lobby:</h1>
+      {{#each waiting }}
+      <div class="user">{{name}}</div>
+      {{/each}}
+      {{/if}}
+      <div>
+        <button id="startgame" class="startgame" {{{disabled}}}>
+          {{#if count}} It's on! {{else}} Play solo {{/if}}
+        </button>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="songs">
+  <div id="songs">
+    <h1>Songs</h1>
+
+    <input id="newsong" type="text" /> 
+    <button id="add_song" class="add_song">Add Song</button>
+    {{#if count}}
+    <h1>{{count}} songs in queue:</h1>
+    {{#each song }}
+    <div class="song"><a href='{{link}}'>{{name}}</a> by {{artist}} </div>
+    {{/each}}
+    {{/if}}
+
+    {{#else}}
+    <hi>No songs??</hi>
+    {{/else}}
+  </div>
+</template>
+
+<template name="video">
+  <h1>Hello World!</h1>
+  {{greeting}}
+  <input type="button" value="Click" />
+</template>
